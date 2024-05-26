@@ -1,5 +1,24 @@
+import { HStack, FormLabel, Switch, useColorMode } from "@chakra-ui/react";
+
 function ThemeSwitch() {
-	return <div>ThemeSwitch</div>;
+	const { colorMode, toggleColorMode } = useColorMode();
+
+	return (
+		<HStack>
+			<Switch
+				id="darkModeSwitch"
+				isChecked={colorMode === "dark"}
+				onChange={toggleColorMode}
+			/>
+			<FormLabel
+				mb={0}
+				htmlFor="darkModeSwitch"
+				whiteSpace="nowrap"
+			>
+				Dark Mode
+			</FormLabel>
+		</HStack>
+	);
 }
 
 export default ThemeSwitch;
