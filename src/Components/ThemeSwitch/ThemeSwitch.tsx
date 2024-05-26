@@ -7,6 +7,7 @@ function ThemeSwitch() {
 		<HStack>
 			<Switch
 				id="darkModeSwitch"
+				colorScheme="teal"
 				isChecked={colorMode === "dark"}
 				onChange={toggleColorMode}
 			/>
