@@ -6,7 +6,7 @@ interface FetchResponse<T> {
 	results: T[];
 }
 
-function useData<T>(endpoint: string, params: object, dependencies: unknown[] = []) {
+function useData<T>(endpoint: string, params: object = {}, dependencies: unknown[] = []) {
 	const [data, setData] = useState<T[]>([]);
 	const [error, setError] = useState("");
 	const [isLoading, setLoading] = useState(false);
