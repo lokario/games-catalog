@@ -10,6 +10,7 @@ function GenreItem({ genre }: { genre: Genre }) {
 				backgroundSize="cover"
 				backgroundPosition="center"
 				borderRadius="6px"
+				flexShrink={0}
 				backgroundImage={genre.image_background}></Box>
 			<Text
 				fontSize="lg"
