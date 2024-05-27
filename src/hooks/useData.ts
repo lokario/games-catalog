@@ -6,7 +6,7 @@ interface FetchResponse<T> {
 	results: T[];
 }
 
-function useData<T>(endpoint: string) {
+function useData<T>(endpoint: string, params: object, dependencies: unknown[] = []) {
 	const [data, setData] = useState<T[]>([]);
 	const [error, setError] = useState("");
 	const [isLoading, setLoading] = useState(false);
@@ -16,7 +16,7 @@ function useData<T>(endpoint: string) {
 
 		setLoading(true);
 		rawgClient
-			.get<FetchResponse<T>>(endpoint, { signal: controller.signal })
+			.get<FetchResponse<T>>(endpoint, { signal: controller.signal, params })
 			.then(res => {
 				setData(res.data.results);
 				setLoading(false);
@@ -28,7 +28,7 @@ function useData<T>(endpoint: string) {
 			});
 
 		return () => controller.abort();
-	}, []);
+	}, dependencies);
 
 	return { data, error, isLoading };
 }

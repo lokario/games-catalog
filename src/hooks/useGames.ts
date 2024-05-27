@@ -18,8 +18,19 @@ export interface Game {
 	parent_platforms: { platform: Platform }[];
 }
 
-function useGames() {
-	return useData<Game>("/games");
+export interface GameQuery {
+	page: number;
+	page_size: number;
+	genre: number;
+	search: string;
+	platform: number;
+	ordering: keyof typeof GamesOrdering;
+}
+
+export const GamesOrdering = { name: "Name", "-added": "Popularity", rating: "Average rating", released: "Release date", added: "Date added" } as const;
+
+export function useGames(gameQuery: GameQuery) {
+	return useData<Game>("/games", { ...gameQuery }, [gameQuery]);
 }
 
 export default useGames;

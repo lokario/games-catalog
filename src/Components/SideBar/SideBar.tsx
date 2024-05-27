@@ -11,8 +11,9 @@ function SideBar() {
 	return (
 		<VStack
 			as="aside"
-			alignItems="left"
-			margin="40px">
+			mx={10}
+			my={6}
+			alignItems="left">
 			<Heading
 				as="h4"
 				size="lg"

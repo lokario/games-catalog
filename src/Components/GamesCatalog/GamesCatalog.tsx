@@ -1,9 +1,9 @@
 import { Grid, GridItem, VStack, useMediaQuery } from "@chakra-ui/react";
-import useGames from "../../hooks/useGames";
+import useGames, { GameQuery } from "../../hooks/useGames";
 import GameCard, { GameCardSkeleton } from "../GameCard";
 
-function GamesCatalog() {
-	const { data: games, error, isLoading } = useGames();
+function GamesCatalog({ gameQuery }: { gameQuery: GameQuery }) {
+	const { data: games, error, isLoading } = useGames(gameQuery, gameQuery);
 	const [isSmall, isMedium, isLarge] = useMediaQuery(["(max-width: 980px)", "(max-width: 1040px)", "(max-width: 1440px)"]);
 
 	const skeletons = 12;
@@ -12,8 +12,7 @@ function GamesCatalog() {
 	return (
 		<Grid
 			templateColumns={`repeat(${columns}, 1fr)`}
-			gap={6}
-			padding={12}>
+			gap={6}>
 			{[...Array(columns)].map((_, column) => (
 				<GridItem key={column}>
 					<VStack gap={6}>
