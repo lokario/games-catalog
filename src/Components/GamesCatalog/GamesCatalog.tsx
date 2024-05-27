@@ -1,7 +1,6 @@
 import { Grid, GridItem, VStack, useMediaQuery } from "@chakra-ui/react";
 import useGames from "../../hooks/useGames";
-import GameCard from "../GameCard";
-import GameCardSkeleton from "../GameCard/GameCardSkeleton";
+import GameCard, { GameCardSkeleton } from "../GameCard";
 
 function GamesCatalog() {
 	const { data: games, error, isLoading } = useGames();
