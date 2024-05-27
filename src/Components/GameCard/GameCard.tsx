@@ -12,7 +12,7 @@ function GameCard({ game }: { game: Game }) {
 			<Image src={getCroppedImageUrl(game.background_image)} />
 			<CardBody>
 				<VStack>
-					<PlatformsList />
+					<PlatformsList platforms={game.parent_platforms.map(p => p.platform)} />
 					<Heading
 						fontSize="2xl"
 						textAlign="left">

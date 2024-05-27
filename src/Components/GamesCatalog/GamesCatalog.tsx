@@ -4,7 +4,9 @@ import GameCard from "../GameCard";
 
 function GamesCatalog() {
 	const { data: games, error, isLoading } = useGames();
-	const [isSmall, isMedium, isLarge] = useMediaQuery(["(max-width: 980px)", "(max-width: 1040px)", "(max-width: 1440px)"]);
+    const [isSmall, isMedium, isLarge] = useMediaQuery(["(max-width: 980px)", "(max-width: 1040px)", "(max-width: 1440px)"]);
+
+	console.log(games);
 
 	const columns = isSmall ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
 

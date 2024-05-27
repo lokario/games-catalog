@@ -3,6 +3,7 @@ import useData from "./useData";
 export interface Platform {
 	id: number;
 	name: string;
+	slug: string;
 }
 
 export interface Game {
@@ -11,7 +12,7 @@ export interface Game {
 	background_image: string;
 	rating_top: number;
 	metacritic: number;
-	platforms: { platform: Platform }[];
+	parent_platforms: { platform: Platform }[];
 }
 
 function useGames() {
