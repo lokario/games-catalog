@@ -6,9 +6,16 @@ export interface Platform {
 	slug: string;
 }
 
+export interface Genre {
+	id: number;
+	name: string;
+}
+
 export interface Game {
 	id: number;
 	name: string;
+	genres: Genre[];
+	released: string;
 	background_image: string;
 	rating_top: number;
 	metacritic: number;
