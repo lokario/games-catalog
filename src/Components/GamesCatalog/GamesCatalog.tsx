@@ -16,10 +16,16 @@ function GamesCatalog() {
 			gap={6}
 			padding={12}>
 			{[...Array(columns)].map((_, column) => (
-				<GridItem>
+				<GridItem key={column}>
 					<VStack gap={6}>
 						{games.map((game, index) => {
-							if (index % columns == column) return <GameCard game={game} />;
+							if (index % columns == column)
+								return (
+									<GameCard
+										key={game.id}
+										game={game}
+									/>
+								);
 						})}
 					</VStack>
 				</GridItem>

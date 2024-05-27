@@ -1,7 +1,8 @@
 import { Game } from "../../hooks/useGames";
-import { Card, CardBody, Heading, Image, VStack } from "@chakra-ui/react";
+import { Card, CardBody, Heading, Image, Text, VStack } from "@chakra-ui/react";
 import getCroppedImageUrl from "../../services/image-url";
 import PlatformsList from "../PlatformsList";
+import Rating from "../Rating";
 
 function GameCard({ game }: { game: Game }) {
 	return (
@@ -14,9 +15,14 @@ function GameCard({ game }: { game: Game }) {
 				<VStack>
 					<PlatformsList platforms={game.parent_platforms.map(p => p.platform)} />
 					<Heading
-						fontSize="2xl"
-						textAlign="left">
-						{game.name}
+						cursor="pointer"
+						fontSize="2xl">
+						<Text
+							mr="8px"
+							display="inline">
+							{game.name}
+						</Text>
+						<Rating rating={game.rating_top} />
 					</Heading>
 				</VStack>
 			</CardBody>
