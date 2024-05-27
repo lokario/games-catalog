@@ -9,6 +9,7 @@ function CriticScore({ score }: CriticScoreProps) {
 
 	return (
 		<Badge
+			variant="outline"
 			colorScheme={color}
 			fontSize="14px"
 			paddingX={2}

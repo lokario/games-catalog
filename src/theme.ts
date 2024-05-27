@@ -20,6 +20,12 @@ const theme = extendTheme({
 			800: "#121212",
 			900: "#111",
 		},
+		green: {
+			200: "#6dc849",
+		},
+		yellow: {
+			200: "#fdca52",
+		},
 	},
 });
 
