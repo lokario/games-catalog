@@ -1,13 +1,16 @@
-import { HStack, Image, Text } from "@chakra-ui/react";
+import { Box, HStack, Text } from "@chakra-ui/react";
 import { Genre } from "../../hooks/useGenres";
 
 function GenreItem({ genre }: { genre: Genre }) {
 	return (
 		<HStack>
-			<Image
-				boxSize="32px"
+			<Box
+				width="32px"
+				height="32px"
+				backgroundSize="cover"
+				backgroundPosition="center"
 				borderRadius="6px"
-				src={genre.image_background}></Image>
+				backgroundImage={genre.image_background}></Box>
 			<Text
 				fontSize="lg"
 				noOfLines={1}>
