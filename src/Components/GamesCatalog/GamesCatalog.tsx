@@ -16,10 +16,12 @@ function GamesCatalog({ gameQuery, displayOption }: GamesCatalogProps) {
 	const columns = isSmall || displayOption == DisplayOption.Column ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
 
 	if (error) {
-		<Alert status="error">
-			<AlertIcon />
-			{error}
-		</Alert>;
+		return (
+			<Alert status="error">
+				<AlertIcon />
+				{error}
+			</Alert>
+		);
 	}
 
 	if (!games.length)
