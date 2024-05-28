@@ -1,5 +1,6 @@
 import { Image, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react";
 import { Genre } from "../../hooks/useGenres";
+import getCroppedImageUrl from "../../services/image-url";
 
 interface GenreItemProps {
 	genre: Genre;
@@ -20,7 +21,7 @@ function GenreItem({ genre, isActive, onSelect }: GenreItemProps) {
 				boxSize="32px"
 				objectFit="cover"
 				borderRadius="6px"
-				src={genre.image_background}></Image>
+				src={getCroppedImageUrl(genre.image_background)}></Image>
 			<Text
 				m={2}
 				fontSize="lg"
