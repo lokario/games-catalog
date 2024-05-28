@@ -2,12 +2,20 @@ import { Text, Grid, GridItem, Show, VStack, Box } from "@chakra-ui/react";
 import TopBar from "./Components/TopBar";
 import GamesCatalog from "./Components/GamesCatalog";
 import SideBar from "./Components/SideBar";
-import { GameQuery } from "./hooks/useGames";
+import { GameQuery, GamesOrdering } from "./hooks/useGames";
 import { useState } from "react";
 import GamesControls from "./Components/GamesControls";
 
 function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
+
+	const setGameOrdering = (ordering: string) => {
+		setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
+	};
+
+	const setGamePlatform = (platform: number) => {
+		setGameQuery({ ...gameQuery, parent_platforms: platform });
+	};
 
 	return (
 		<Grid
@@ -30,7 +38,8 @@ function App() {
 					pr={10}>
 					<Box mb={8}>
 						<GamesControls
-							setGameQuery={setGameQuery}
+							setGameOrdering={setGameOrdering}
+							setGamePlatform={setGamePlatform}
 							gameQuery={gameQuery}
 						/>
 					</Box>

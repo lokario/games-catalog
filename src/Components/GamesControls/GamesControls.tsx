@@ -5,10 +5,11 @@ import usePlatforms from "../../hooks/usePlatforms";
 
 interface GamesControlsProps {
 	gameQuery: GameQuery;
-	setGameQuery: (gameQuery: GameQuery) => void;
+	setGameOrdering: (ordering: string) => void;
+	setGamePlatform: (platform: number) => void;
 }
 
-function GamesControls({ gameQuery, setGameQuery }: GamesControlsProps) {
+function GamesControls({ gameQuery, setGameOrdering, setGamePlatform }: GamesControlsProps) {
 	const { data: platforms, error, isLoading } = usePlatforms();
 
 	return (
@@ -31,7 +32,7 @@ function GamesControls({ gameQuery, setGameQuery }: GamesControlsProps) {
 						<MenuItem
 							key={key}
 							justifyContent="space-between"
-							onClick={() => setGameQuery({ ...gameQuery, ordering: key as keyof typeof GamesOrdering })}>
+							onClick={() => setGameOrdering(key)}>
 							{name}
 							{gameQuery.ordering == key && (
 								<Box color={"green.400"}>
@@ -68,7 +69,7 @@ function GamesControls({ gameQuery, setGameQuery }: GamesControlsProps) {
 								width="100%"
 								colorScheme="red"
 								variant="ghost"
-								onClick={() => setGameQuery({ ...gameQuery, parent_platforms: null })}>
+								onClick={() => setGamePlatform()}>
 								Clear
 							</Button>
 						)}
@@ -78,7 +79,7 @@ function GamesControls({ gameQuery, setGameQuery }: GamesControlsProps) {
 						<MenuItem
 							key={platform.id}
 							justifyContent="space-between"
-							onClick={() => setGameQuery({ ...gameQuery, parent_platforms: platform.id })}>
+							onClick={() => setGamePlatform(platform.id)}>
 							{platform.name}
 							{gameQuery.parent_platforms == platform.id && (
 								<Box color={"green.400"}>
