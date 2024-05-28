@@ -9,7 +9,7 @@ import { DisplayOption } from "./Components/DisplayOptions/DisplayOptions";
 import GamesHeading from "./Components/GamesHeading";
 
 function App() {
-	const defaultGameQuery = { ordering: "-added", page: 1, page_size: 20 } as GameQuery;
+	const defaultGameQuery = { ordering: "-added", page: 1, page_size: 40 } as GameQuery;
 	const [gameQuery, setGameQuery] = useState<GameQuery>(defaultGameQuery);
 	const [displayOption, setDisplayOption] = useState(DisplayOption.Grid);
 
