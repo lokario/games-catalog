@@ -16,8 +16,16 @@ function App() {
 		if (gameQuery.search != search) setGameQuery({ ...gameQuery, search: search });
 	};
 
+	const setAllGames = () => {
+		setGameQuery({} as GameQuery);
+	};
+
+	const setNewReleases = () => {
+		setGameQuery({ recent: true, ordering: "-added" } as GameQuery);
+	};
+
 	const setGameGenre = (genre: number) => {
-		if (gameQuery.genres != genre) setGameQuery({ ...gameQuery, genres: genre });
+		if (gameQuery.genres != genre) setGameQuery({ ...gameQuery, genres: genre, recent: false });
 	};
 
 	const setGameOrdering = (ordering: string) => {
@@ -39,6 +47,8 @@ function App() {
 				<GridItem area={"side"}>
 					<SideBar
 						gameQuery={gameQuery}
+						setAllGames={setAllGames}
+						setNewReleases={setNewReleases}
 						setGameGenre={setGameGenre}
 					/>
 				</GridItem>

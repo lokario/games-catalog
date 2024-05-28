@@ -15,6 +15,8 @@ function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
 
 		if (currentGenre) heading = `${currentGenre.name} Games`;
 
+		if (gameQuery.recent) heading = `New Releases`;
+
 		if (currentPlatform) heading += ` for ${currentPlatform.name}`;
 
 		if (gameQuery.search) heading = `Results for: ${gameQuery.search}`;

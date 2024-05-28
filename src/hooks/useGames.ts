@@ -16,6 +16,7 @@ export interface Game {
 export interface GameQuery {
 	page: number;
 	page_size: number;
+	recent: boolean;
 	genres: number;
 	search: string;
 	parent_platforms: number;
@@ -25,7 +26,8 @@ export interface GameQuery {
 export const GamesOrdering = { name: "Name", "-added": "Popularity", rating: "Average rating", released: "Release date", added: "Date added" } as const;
 
 export function useGames(gameQuery: GameQuery) {
-	return useData<Game>("/games", { ...gameQuery }, [gameQuery]);
+	const endPoint = gameQuery.recent ? "/games/lists/recent-games-past" : "/games";
+	return useData<Game>(endPoint, { ...gameQuery }, [gameQuery]);
 }
 
 export default useGames;
