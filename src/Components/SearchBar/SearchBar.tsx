@@ -1,5 +1,5 @@
 import { Box, CloseButton, Input, InputGroup, InputLeftElement, InputRightElement } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { LuSearch } from "react-icons/lu";
 
 function SearchBar({ onSearch }: { onSearch: (search: string) => void }) {
