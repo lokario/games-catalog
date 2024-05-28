@@ -12,16 +12,20 @@ function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
 	const [displayOption, setDisplayOption] = useState(DisplayOption.Grid);
 
+	const setGameSearch = (search: string) => {
+		if (gameQuery.search != search) setGameQuery({ ...gameQuery, search: search });
+	};
+
 	const setGameGenre = (genre: number) => {
-		setGameQuery({ ...gameQuery, genres: genre });
+		if (gameQuery.genres != genre) setGameQuery({ ...gameQuery, genres: genre });
 	};
 
 	const setGameOrdering = (ordering: string) => {
-		setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
+		if (gameQuery.ordering != ordering) setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
 	};
 
 	const setGamePlatform = (platform: number) => {
-		setGameQuery({ ...gameQuery, parent_platforms: platform });
+		if (gameQuery.parent_platforms != platform) setGameQuery({ ...gameQuery, parent_platforms: platform });
 	};
 
 	return (
@@ -29,7 +33,7 @@ function App() {
 			templateAreas={{ base: `"top" "main"`, lg: `"top top" "side main"` }}
 			gridTemplateColumns={{ base: "1fr", lg: "250px 1fr" }}>
 			<GridItem area={"top"}>
-				<TopBar />
+				<TopBar setGameSearch={setGameSearch} />
 			</GridItem>
 			<Show above="lg">
 				<GridItem area={"side"}>
