@@ -27,7 +27,10 @@ export interface GameQuery {
 export const GamesOrdering = { name: "Name", "-added": "Popularity", rating: "Average rating", released: "Release date", added: "Date added" } as const;
 
 export function useGames(gameQuery: GameQuery) {
-	const endPoint = gameQuery.recent ? "/games/lists/recent-games-past" : gameQuery.discover ? "/games/lists/greatest" : "/games";
+	let endPoint = "/games";
+
+	if (gameQuery.recent) endPoint += "/lists/recent-games-past";
+	if (gameQuery.discover) endPoint += "/lists/greatest";
 
 	return useData<Game>(endPoint, { ...gameQuery }, [gameQuery]);
 }
