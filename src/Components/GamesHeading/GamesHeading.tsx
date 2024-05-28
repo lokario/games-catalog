@@ -11,7 +11,13 @@ function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
 	const currentGenre = genres.find(g => g.id == gameQuery.genres);
 
 	const getGameHeading = () => {
-		if (currentPlatform) return `Games for ${currentPlatform.name}`;
+		if (currentPlatform) {
+			let heading = `Games for ${currentPlatform.name}`;
+
+			if (currentGenre) heading = `${currentGenre.name} ${heading}`;
+
+			return heading;
+		}
 
 		if (currentGenre) return `${currentGenre.name} Games`;
 
