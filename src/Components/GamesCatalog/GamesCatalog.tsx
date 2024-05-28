@@ -1,4 +1,4 @@
-import { Grid, GridItem, VStack, useMediaQuery } from "@chakra-ui/react";
+import { Text, Grid, GridItem, VStack, useMediaQuery, Alert, AlertIcon } from "@chakra-ui/react";
 import useGames, { GameQuery } from "../../hooks/useGames";
 import GameCard, { GameCardSkeleton } from "../GameCard";
 import { DisplayOption } from "../DisplayOptions/DisplayOptions";
@@ -14,6 +14,22 @@ function GamesCatalog({ gameQuery, displayOption }: GamesCatalogProps) {
 
 	const skeletons = 12;
 	const columns = isSmall || displayOption == DisplayOption.Column ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
+
+	if (error) {
+		<Alert status="error">
+			<AlertIcon />
+			{error}
+		</Alert>;
+	}
+
+	if (!games.length)
+		return (
+			<Text
+				textAlign="center"
+				fontSize="xl">
+				We're sorry, but no games match the criteria you provided.
+			</Text>
+		);
 
 	return (
 		<Grid

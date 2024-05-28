@@ -1,4 +1,4 @@
-import { Box, HStack, Text, useColorModeValue } from "@chakra-ui/react";
+import { Image, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react";
 import { Genre } from "../../hooks/useGenres";
 
 interface GenreItemProps {
@@ -16,17 +16,16 @@ function GenreItem({ genre, isActive, onSelect }: GenreItemProps) {
 			cursor="pointer"
 			role="group"
 			onClick={() => onSelect(genre.id)}>
-			<Box
-				width="32px"
-				height="32px"
-				backgroundSize="cover"
-				backgroundPosition="center"
+			<Image
+				boxSize="32px"
+				objectFit="cover"
 				borderRadius="6px"
-				flexShrink={0}
-				backgroundImage={genre.image_background}></Box>
+				src={genre.image_background}></Image>
 			<Text
+				m={2}
 				fontSize="lg"
-				noOfLines={1}
+				lineHeight={1}
+				whiteSpace="normal"
 				_groupHover={{ color: textColorActive }}
 				color={isActive ? textColorActive : textColor}
 				fontWeight={isActive ? "700" : "500"}>
