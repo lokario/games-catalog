@@ -22,6 +22,7 @@ function SideBar({ gameQuery, setAllGames, setTopGames, setNewReleases, setGameG
 			as="aside"
 			mx={10}
 			my={6}
+			position="fixed"
 			alignItems="left">
 			<Heading
 				as="h4"
