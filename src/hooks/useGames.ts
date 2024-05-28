@@ -17,6 +17,7 @@ export interface GameQuery {
 	page: number;
 	page_size: number;
 	recent: boolean;
+	discover: boolean;
 	genres: number;
 	search: string;
 	parent_platforms: number;
@@ -26,7 +27,8 @@ export interface GameQuery {
 export const GamesOrdering = { name: "Name", "-added": "Popularity", rating: "Average rating", released: "Release date", added: "Date added" } as const;
 
 export function useGames(gameQuery: GameQuery) {
-	const endPoint = gameQuery.recent ? "/games/lists/recent-games-past" : "/games";
+	const endPoint = gameQuery.recent ? "/games/lists/recent-games-past" : gameQuery.discover ? "/games/lists/greatest" : "/games";
+
 	return useData<Game>(endPoint, { ...gameQuery }, [gameQuery]);
 }
 

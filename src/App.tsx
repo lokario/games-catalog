@@ -9,19 +9,22 @@ import { DisplayOption } from "./Components/DisplayOptions/DisplayOptions";
 import GamesHeading from "./Components/GamesHeading";
 
 function App() {
-	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
+	const defaultGameQuery = { ordering: "-added", page: 1, page_size: 20 } as GameQuery;
+	const [gameQuery, setGameQuery] = useState<GameQuery>(defaultGameQuery);
 	const [displayOption, setDisplayOption] = useState(DisplayOption.Grid);
 
 	const setGameSearch = (search: string) => {
 		if (gameQuery.search != search) setGameQuery({ ...gameQuery, search: search });
 	};
 
-	const setAllGames = () => {
-		setGameQuery({} as GameQuery);
+	const setAllGames = () => setGameQuery(defaultGameQuery);
+
+	const setTopGames = () => {
+		if (!gameQuery.discover) setGameQuery({ ...defaultGameQuery, discover: true } as GameQuery);
 	};
 
 	const setNewReleases = () => {
-		setGameQuery({ recent: true, ordering: "-added" } as GameQuery);
+		if (!gameQuery.recent) setGameQuery({ ...defaultGameQuery, recent: true } as GameQuery);
 	};
 
 	const setGameGenre = (genre: number) => {
@@ -48,6 +51,7 @@ function App() {
 					<SideBar
 						gameQuery={gameQuery}
 						setAllGames={setAllGames}
+						setTopGames={setTopGames}
 						setNewReleases={setNewReleases}
 						setGameGenre={setGameGenre}
 					/>

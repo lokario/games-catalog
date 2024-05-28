@@ -7,11 +7,12 @@ import { GameQuery } from "../../hooks/useGames";
 interface SideBarProps {
 	gameQuery: GameQuery;
 	setAllGames: () => void;
+	setTopGames: () => void;
 	setNewReleases: () => void;
 	setGameGenre: (genre: number) => void;
 }
 
-function SideBar({ gameQuery, setAllGames, setNewReleases, setGameGenre }: SideBarProps) {
+function SideBar({ gameQuery, setAllGames, setTopGames, setNewReleases, setGameGenre }: SideBarProps) {
 	const { data: genres, isLoading } = useGenres();
 
 	const skeletons = 19;
@@ -29,6 +30,14 @@ function SideBar({ gameQuery, setAllGames, setNewReleases, setGameGenre }: SideB
 				cursor="pointer"
 				onClick={() => setAllGames()}>
 				All Games
+			</Heading>
+			<Heading
+				as="h4"
+				fontSize="1.5rem"
+				mb="16px"
+				cursor="pointer"
+				onClick={() => setTopGames()}>
+				Top Games
 			</Heading>
 			<Heading
 				as="h4"
