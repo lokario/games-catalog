@@ -10,7 +10,7 @@ interface SideBarProps {
 }
 
 function SideBar({ gameQuery, setGameGenre }: SideBarProps) {
-	const { data: genres, error, isLoading } = useGenres();
+	const { data: genres, isLoading } = useGenres();
 
 	const skeletons = 19;
 

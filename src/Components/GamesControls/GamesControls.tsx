@@ -14,7 +14,7 @@ interface GamesControlsProps {
 }
 
 function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatform, setDisplayOption }: GamesControlsProps) {
-	const { data: platforms, error, isLoading } = usePlatforms();
+	const { data: platforms } = usePlatforms();
 
 	const currentPlatform = platforms.find(p => p.id == gameQuery.parent_platforms);
 
