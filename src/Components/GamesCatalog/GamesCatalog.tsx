@@ -1,13 +1,19 @@
 import { Grid, GridItem, VStack, useMediaQuery } from "@chakra-ui/react";
 import useGames, { GameQuery } from "../../hooks/useGames";
 import GameCard, { GameCardSkeleton } from "../GameCard";
+import { DisplayOption } from "../DisplayOptions/DisplayOptions";
 
-function GamesCatalog({ gameQuery }: { gameQuery: GameQuery }) {
-	const { data: games, error, isLoading } = useGames(gameQuery, gameQuery);
+interface GamesCatalogProps {
+	gameQuery: GameQuery;
+	displayOption: DisplayOption;
+}
+
+function GamesCatalog({ gameQuery, displayOption }: GamesCatalogProps) {
+	const { data: games, error, isLoading } = useGames(gameQuery);
 	const [isSmall, isMedium, isLarge] = useMediaQuery(["(max-width: 980px)", "(max-width: 1040px)", "(max-width: 1440px)"]);
 
 	const skeletons = 12;
-	const columns = isSmall ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
+	const columns = isSmall || displayOption == DisplayOption.Column ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
 
 	return (
 		<Grid

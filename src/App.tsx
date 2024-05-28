@@ -1,13 +1,15 @@
-import { Text, Grid, GridItem, Show, VStack, Box } from "@chakra-ui/react";
+import { Grid, GridItem, Show, Box } from "@chakra-ui/react";
 import TopBar from "./Components/TopBar";
 import GamesCatalog from "./Components/GamesCatalog";
 import SideBar from "./Components/SideBar";
 import { GameQuery, GamesOrdering } from "./hooks/useGames";
 import { useState } from "react";
 import GamesControls from "./Components/GamesControls";
+import { DisplayOption } from "./Components/DisplayOptions/DisplayOptions";
 
 function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
+	const [displayOption, setDisplayOption] = useState(DisplayOption.Grid);
 
 	const setGameOrdering = (ordering: string) => {
 		setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
@@ -40,10 +42,15 @@ function App() {
 						<GamesControls
 							setGameOrdering={setGameOrdering}
 							setGamePlatform={setGamePlatform}
+							setDisplayOption={(displayOption: DisplayOption) => setDisplayOption(displayOption)}
+							displayOption={displayOption}
 							gameQuery={gameQuery}
 						/>
 					</Box>
-					<GamesCatalog gameQuery={gameQuery} />
+					<GamesCatalog
+						gameQuery={gameQuery}
+						displayOption={displayOption}
+					/>
 				</Box>
 			</GridItem>
 		</Grid>

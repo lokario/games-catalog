@@ -2,14 +2,18 @@ import { Text, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Box, MenuDi
 import { FaCheck, FaChevronDown } from "react-icons/fa6";
 import { GameQuery, GamesOrdering } from "../../hooks/useGames";
 import usePlatforms from "../../hooks/usePlatforms";
+import DisplayOptions from "../DisplayOptions";
+import { DisplayOption } from "../DisplayOptions/DisplayOptions";
 
 interface GamesControlsProps {
 	gameQuery: GameQuery;
+	displayOption: DisplayOption;
 	setGameOrdering: (ordering: string) => void;
 	setGamePlatform: (platform: number) => void;
+	setDisplayOption: (displayOption: DisplayOption) => void;
 }
 
-function GamesControls({ gameQuery, setGameOrdering, setGamePlatform }: GamesControlsProps) {
+function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatform, setDisplayOption }: GamesControlsProps) {
 	const { data: platforms, error, isLoading } = usePlatforms();
 
 	return (
@@ -90,6 +94,12 @@ function GamesControls({ gameQuery, setGameOrdering, setGamePlatform }: GamesCon
 					))}
 				</MenuList>
 			</Menu>
+			<Box marginLeft="auto">
+				<DisplayOptions
+					displayOption={displayOption}
+					setDisplayOption={setDisplayOption}
+				/>
+			</Box>
 		</HStack>
 	);
 }
