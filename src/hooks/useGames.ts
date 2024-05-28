@@ -16,7 +16,7 @@ export interface Game {
 export interface GameQuery {
 	page: number;
 	page_size: number;
-	genre: number;
+	genres: number;
 	search: string;
 	parent_platforms: number;
 	ordering: keyof typeof GamesOrdering;

@@ -2,8 +2,14 @@ import { Heading, VStack } from "@chakra-ui/react";
 import useGenres from "../../hooks/useGenres";
 import GenreItem from "../GenreItem/GenreItem";
 import GenreItemSkeleton from "../GenreItem/GenreItemSkeleton";
+import { GameQuery } from "../../hooks/useGames";
 
-function SideBar() {
+interface SideBarProps {
+	gameQuery: GameQuery;
+	setGameGenre: (genre: number) => void;
+}
+
+function SideBar({ gameQuery, setGameGenre }: SideBarProps) {
 	const { data: genres, error, isLoading } = useGenres();
 
 	const skeletons = 19;
@@ -28,6 +34,8 @@ function SideBar() {
 					<GenreItem
 						key={genre.id}
 						genre={genre}
+						isActive={gameQuery.genres == genre.id}
+						onSelect={setGameGenre}
 					/>
 				))}
 			</VStack>

@@ -12,6 +12,10 @@ function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
 	const [displayOption, setDisplayOption] = useState(DisplayOption.Grid);
 
+	const setGameGenre = (genre: number) => {
+		setGameQuery({ ...gameQuery, genres: genre });
+	};
+
 	const setGameOrdering = (ordering: string) => {
 		setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
 	};
@@ -29,7 +33,10 @@ function App() {
 			</GridItem>
 			<Show above="lg">
 				<GridItem area={"side"}>
-					<SideBar />
+					<SideBar
+						gameQuery={gameQuery}
+						setGameGenre={setGameGenre}
+					/>
 				</GridItem>
 			</Show>
 			<GridItem
