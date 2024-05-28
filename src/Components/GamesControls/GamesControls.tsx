@@ -16,6 +16,8 @@ interface GamesControlsProps {
 function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatform, setDisplayOption }: GamesControlsProps) {
 	const { data: platforms, error, isLoading } = usePlatforms();
 
+	const currentPlatform = platforms.find(p => p.id == gameQuery.parent_platforms);
+
 	return (
 		<HStack width="100%">
 			<Menu>
@@ -56,7 +58,7 @@ function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatf
 					<Text
 						display="inline"
 						fontWeight="600">
-						Platforms
+						{currentPlatform ? currentPlatform.name : "Platforms"}
 					</Text>
 				</MenuButton>
 				<MenuList>
