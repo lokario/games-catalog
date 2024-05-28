@@ -23,6 +23,14 @@ function SideBar({ gameQuery, setGameGenre }: SideBarProps) {
 			<Heading
 				as="h4"
 				size="lg"
+				mb="16px"
+				cursor="pointer"
+				onClick={() => setGameGenre()}>
+				Home
+			</Heading>
+			<Heading
+				as="h4"
+				size="lg"
 				mb="16px">
 				Genres
 			</Heading>
