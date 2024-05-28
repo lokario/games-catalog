@@ -6,6 +6,7 @@ import { GameQuery, GamesOrdering } from "./hooks/useGames";
 import { useState } from "react";
 import GamesControls from "./Components/GamesControls";
 import { DisplayOption } from "./Components/DisplayOptions/DisplayOptions";
+import GamesHeading from "./Components/GamesHeading";
 
 function App() {
 	const [gameQuery, setGameQuery] = useState<GameQuery>({ ordering: "-added" } as GameQuery);
@@ -36,8 +37,10 @@ function App() {
 				area={"main"}>
 				<Box
 					pl={2}
-					pt={8}
 					pr={10}>
+					<Box mb={4}>
+						<GamesHeading gameQuery={gameQuery} />
+					</Box>
 					<Box mb={8}>
 						<GamesControls
 							setGameOrdering={setGameOrdering}
