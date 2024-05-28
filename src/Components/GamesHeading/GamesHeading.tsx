@@ -15,6 +15,8 @@ function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
 
 		if (currentGenre) return `${currentGenre.name} Games`;
 
+		if (gameQuery.search) return `Results for: ${gameQuery.search}`;
+
 		return "All Games";
 	};
 
