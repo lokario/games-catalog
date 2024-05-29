@@ -35,7 +35,7 @@ function App() {
 		if (gameQuery.ordering != ordering) setGameQuery({ ...gameQuery, ordering: ordering as keyof typeof GamesOrdering });
 	};
 
-	const setGamePlatform = (platform: number) => {
+	const setGamePlatform = (platform?: number) => {
 		if (gameQuery.parent_platforms != platform) setGameQuery({ ...gameQuery, parent_platforms: platform });
 	};
 

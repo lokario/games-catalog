@@ -6,8 +6,8 @@ import useResolution from "../../hooks/useResolution";
 
 function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
 	const [isSmall] = useResolution();
-	const { data: platforms, platformsError, isPlatformsLoading } = usePlatforms();
-	const { data: genres, genresError, isGenresLoading } = useGenres();
+	const { data: platforms } = usePlatforms();
+	const { data: genres } = useGenres();
 
 	const currentPlatform = platforms.find(p => p.id == gameQuery.parent_platforms);
 	const currentGenre = genres.find(g => g.id == gameQuery.genres);

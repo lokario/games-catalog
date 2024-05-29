@@ -1,4 +1,4 @@
-import { Text, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Box, MenuDivider, VStack } from "@chakra-ui/react";
+import { Text, Button, HStack, Menu, MenuButton, MenuItem, MenuList, Box, MenuDivider } from "@chakra-ui/react";
 import { FaCheck, FaChevronDown } from "react-icons/fa6";
 import { GameQuery, GamesOrdering } from "../../hooks/useGames";
 import usePlatforms from "../../hooks/usePlatforms";
@@ -10,7 +10,7 @@ interface GamesControlsProps {
 	gameQuery: GameQuery;
 	displayOption: DisplayOption;
 	setGameOrdering: (ordering: string) => void;
-	setGamePlatform: (platform: number) => void;
+	setGamePlatform: (platform?: number) => void;
 	setDisplayOption: (displayOption: DisplayOption) => void;
 }
 

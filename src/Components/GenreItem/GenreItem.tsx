@@ -1,4 +1,4 @@
-import { Image, HStack, Link, Text, useColorModeValue } from "@chakra-ui/react";
+import { Image, HStack, Text, useColorModeValue } from "@chakra-ui/react";
 import { Genre } from "../../hooks/useGenres";
 import getCroppedImageUrl from "../../services/image-url";
 

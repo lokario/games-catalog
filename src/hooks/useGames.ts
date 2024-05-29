@@ -20,7 +20,7 @@ export interface GameQuery {
 	discover: boolean;
 	genres: number;
 	search: string;
-	parent_platforms: number;
+	parent_platforms?: number;
 	ordering: keyof typeof GamesOrdering;
 }
 
