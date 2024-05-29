@@ -2,8 +2,10 @@ import { Heading } from "@chakra-ui/react";
 import { GameQuery } from "../../hooks/useGames";
 import usePlatforms from "../../hooks/usePlatforms";
 import useGenres from "../../hooks/useGenres";
+import useResolution from "../../hooks/useResolution";
 
 function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
+	const [isSmall] = useResolution();
 	const { data: platforms, platformsError, isPlatformsLoading } = usePlatforms();
 	const { data: genres, genresError, isGenresLoading } = useGenres();
 
@@ -29,7 +31,8 @@ function GamesHeading({ gameQuery }: { gameQuery: GameQuery }) {
 	return (
 		<Heading
 			as="h1"
-			size="4xl"
+			size={isSmall ? "2xl" : "4xl"}
+			textAlign={isSmall ? "center" : "left"}
 			noOfLines={1}>
 			{getGameHeading()}
 		</Heading>

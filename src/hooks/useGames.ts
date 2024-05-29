@@ -26,7 +26,7 @@ export interface GameQuery {
 
 export const GamesOrdering = { name: "Name", "-added": "Popularity", rating: "Average rating", released: "Release date", added: "Date added" } as const;
 
-export function useGames(gameQuery: GameQuery) {
+function useGames(gameQuery: GameQuery) {
 	let endPoint = "/games";
 
 	if (gameQuery.recent) endPoint += "/lists/recent-games-past";

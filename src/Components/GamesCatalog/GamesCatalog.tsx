@@ -1,7 +1,9 @@
-import { Text, Grid, GridItem, VStack, useMediaQuery, Alert, AlertIcon } from "@chakra-ui/react";
+import { Text, Grid, GridItem, VStack, Alert, AlertIcon, Box } from "@chakra-ui/react";
 import useGames, { GameQuery } from "../../hooks/useGames";
 import GameCard, { GameCardSkeleton } from "../GameCard";
 import { DisplayOption } from "../DisplayOptions/DisplayOptions";
+import useResolution from "../../hooks/useResolution";
+import { useLayoutEffect, useRef, useState } from "react";
 
 interface GamesCatalogProps {
 	gameQuery: GameQuery;
@@ -9,11 +11,19 @@ interface GamesCatalogProps {
 }
 
 function GamesCatalog({ gameQuery, displayOption }: GamesCatalogProps) {
-	const { data: games, error, isLoading } = useGames(gameQuery);
-	const [isSmall, isMedium, isLarge] = useMediaQuery(["(max-width: 980px)", "(max-width: 1040px)", "(max-width: 1440px)"]);
-
 	const skeletons = 12;
+	const [gameCardWidth, setgameCardWidth] = useState(0);
+	const [isSmall, isMedium, isLarge] = useResolution();
+	const { data: games, error, isLoading } = useGames(gameQuery);
 	const columns = isSmall || displayOption == DisplayOption.Column ? 1 : isMedium ? 2 : isLarge ? 3 : 4;
+
+	const ref = useRef<HTMLDivElement>(null);
+	useLayoutEffect(() => {
+		if (ref.current) {
+			const { width } = ref.current.getBoundingClientRect();
+			setgameCardWidth((width - 24 * columns) / columns);
+		}
+	}, [games, columns]);
 
 	if (error) {
 		return (
@@ -35,19 +45,21 @@ function GamesCatalog({ gameQuery, displayOption }: GamesCatalogProps) {
 
 	return (
 		<Grid
+			ref={ref}
 			templateColumns={`repeat(${columns}, 1fr)`}
-			gap={6}>
+			gap="24px">
 			{[...Array(columns)].map((_, column) => (
 				<GridItem key={column}>
-					<VStack gap={6}>
+					<VStack gap="24px">
 						{isLoading && [...Array(skeletons)].map((_, key) => (key % columns == column ? <GameCardSkeleton key={key} /> : null))}
 						{games.map((game, index) => {
 							if (index % columns == column)
 								return (
-									<GameCard
+									<Box
 										key={game.id}
-										game={game}
-									/>
+										maxWidth={`${gameCardWidth}px`}>
+										<GameCard game={game} />
+									</Box>
 								);
 						})}
 					</VStack>

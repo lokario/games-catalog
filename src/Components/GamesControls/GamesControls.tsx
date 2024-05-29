@@ -4,6 +4,7 @@ import { GameQuery, GamesOrdering } from "../../hooks/useGames";
 import usePlatforms from "../../hooks/usePlatforms";
 import DisplayOptions from "../DisplayOptions";
 import { DisplayOption } from "../DisplayOptions/DisplayOptions";
+import useResolution from "../../hooks/useResolution";
 
 interface GamesControlsProps {
 	gameQuery: GameQuery;
@@ -15,11 +16,14 @@ interface GamesControlsProps {
 
 function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatform, setDisplayOption }: GamesControlsProps) {
 	const { data: platforms } = usePlatforms();
+	const [isSmall] = useResolution();
 
 	const currentPlatform = platforms.find(p => p.id == gameQuery.parent_platforms);
 
 	return (
-		<HStack width="100%">
+		<HStack
+			justifyContent={isSmall ? "center" : "flex-start"}
+			width="100%">
 			<Menu>
 				<MenuButton
 					fontWeight="400"
@@ -96,12 +100,14 @@ function GamesControls({ gameQuery, displayOption, setGameOrdering, setGamePlatf
 					))}
 				</MenuList>
 			</Menu>
-			<Box marginLeft="auto">
-				<DisplayOptions
-					displayOption={displayOption}
-					setDisplayOption={setDisplayOption}
-				/>
-			</Box>
+			{!isSmall && (
+				<Box marginLeft="auto">
+					<DisplayOptions
+						displayOption={displayOption}
+						setDisplayOption={setDisplayOption}
+					/>
+				</Box>
+			)}
 		</HStack>
 	);
 }

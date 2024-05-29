@@ -1,7 +1,6 @@
 import { Heading, VStack } from "@chakra-ui/react";
 import useGenres from "../../hooks/useGenres";
 import GenreItem from "../GenreItem/GenreItem";
-import GenreItemSkeleton from "../GenreItem/GenreItemSkeleton";
 import { GameQuery } from "../../hooks/useGames";
 
 interface SideBarProps {
@@ -13,16 +12,14 @@ interface SideBarProps {
 }
 
 function SideBar({ gameQuery, setAllGames, setTopGames, setNewReleases, setGameGenre }: SideBarProps) {
-	const { data: genres, isLoading } = useGenres();
-
-	const skeletons = 19;
+	const { data: genres } = useGenres();
 
 	return (
 		<VStack
 			as="aside"
-			mx={10}
-			my={6}
-			position="fixed"
+			top="50px"
+			marginTop="50px"
+			position="sticky"
 			alignItems="left">
 			<Heading
 				as="h4"
@@ -57,7 +54,6 @@ function SideBar({ gameQuery, setAllGames, setTopGames, setNewReleases, setGameG
 			<VStack
 				gap={2.5}
 				alignItems="left">
-				{isLoading && [...Array(skeletons)].map((_, key) => <GenreItemSkeleton key={key} />)}
 				{genres.map(genre => (
 					<GenreItem
 						key={genre.id}

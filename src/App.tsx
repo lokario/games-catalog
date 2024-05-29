@@ -41,8 +41,10 @@ function App() {
 
 	return (
 		<Grid
+			gap={6}
+			padding={"20px 40px"}
 			templateAreas={{ base: `"top" "main"`, lg: `"top top" "side main"` }}
-			gridTemplateColumns={{ base: "1fr", lg: "250px 1fr" }}>
+			gridTemplateColumns={{ base: "1fr", lg: "200px 1fr" }}>
 			<GridItem area={"top"}>
 				<TopBar setGameSearch={setGameSearch} />
 			</GridItem>
@@ -59,10 +61,9 @@ function App() {
 			</Show>
 			<GridItem
 				as="main"
+				width={{ base: "calc(100% - 40px)", lg: "calc(100% - 0px)" }}
 				area={"main"}>
-				<Box
-					pl={2}
-					pr={10}>
+				<Box>
 					<Box mb={4}>
 						<GamesHeading gameQuery={gameQuery} />
 					</Box>

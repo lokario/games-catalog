@@ -186,9 +186,9 @@ export default function Logo({ fillColor }: { fillColor: string }) {
 				<path
 					id="Layer0_0_MEMBER_0_MEMBER_0_1_STROKES"
 					stroke={fillColor}
-					stroke-width="4"
-					stroke-linejoin="round"
-					stroke-linecap="round"
+					strokeWidth="4"
+					strokeLinejoin="round"
+					strokeLinecap="round"
 					fill="none"
 					d="
          M 26.8 13.65
